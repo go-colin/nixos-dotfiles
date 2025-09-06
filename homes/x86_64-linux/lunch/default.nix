@@ -7,7 +7,7 @@
     gpg-agent = {
       enable = true;
       pinentry.package = pkgs.pinentry-curses;
-      enableSSHSupport = true;
+      enableSshSupport = true;
     };
   };
 

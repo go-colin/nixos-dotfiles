@@ -71,7 +71,7 @@
         permittedInsecurePackages = [ ];
       };
 
-      systems.hosts.nixbox.modules = with inputs; [
+      systems.hosts.lunchbox.modules = with inputs; [
       ];
 
     };
