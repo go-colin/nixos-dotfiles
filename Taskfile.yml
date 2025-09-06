@@ -2,10 +2,8 @@ version: "3"
 
 vars:
   FLAKE_DIR: "{{.USER_WORKING_DIR}}"
-  NIXOS_HOST: "baradur"
-  DARWIN_HOST: "digibook"
-  NIXOS_USER: "arrayofone"
-  DARWIN_USER: "db"
+  NIXOS_HOST: "lunchbox"
+  NIXOS_USER: "lunch"
 
 tasks:
   # =============================================================================
@@ -17,20 +15,10 @@ tasks:
     cmds:
       - sudo nixos-rebuild build --flake {{.FLAKE_DIR}}#{{.NIXOS_HOST}}
 
-  build:darwin:
-    desc: "Build Darwin system configuration"
-    cmds:
-      - darwin-rebuild build --flake {{.FLAKE_DIR}}#{{.DARWIN_HOST}}
-
   switch:nixos:
     desc: "Switch to new NixOS configuration"
     cmds:
       - sudo nixos-rebuild switch --flake {{.FLAKE_DIR}}#{{.NIXOS_HOST}}
-
-  switch:darwin:
-    desc: "Switch to new Darwin configuration"
-    cmds:
-      - darwin-rebuild switch --flake {{.FLAKE_DIR}}#{{.DARWIN_HOST}}
 
   test:nixos:
     desc: "Test NixOS configuration (activate without adding to bootloader)"
@@ -62,20 +50,10 @@ tasks:
     cmds:
       - home-manager switch --flake {{.FLAKE_DIR}}#{{.NIXOS_USER}}@{{.NIXOS_HOST}}
 
-  home:darwin:
-    desc: "Switch Home Manager configuration (Darwin)"
-    cmds:
-      - home-manager switch --flake {{.FLAKE_DIR}}#{{.DARWIN_USER}}@{{.DARWIN_HOST}}
-
   home:build:nixos:
     desc: "Build Home Manager configuration (NixOS)"
     cmds:
       - home-manager build --flake {{.FLAKE_DIR}}#{{.NIXOS_USER}}@{{.NIXOS_HOST}}
-
-  home:build:darwin:
-    desc: "Build Home Manager configuration (Darwin)"
-    cmds:
-      - home-manager build --flake {{.FLAKE_DIR}}#{{.DARWIN_USER}}@{{.DARWIN_HOST}}
 
   # =============================================================================
   # FLAKE MANAGEMENT
@@ -116,20 +94,20 @@ tasks:
   dev:
     desc: "Enter development shell"
     cmds:
-      - nix develop {{.FLAKE_DIR}}#digits
+      - nix develop {{.FLAKE_DIR}}#devbox
     interactive: true
 
   dev:command:
     desc: "Run command in development shell"
     cmds:
-      - nix develop {{.FLAKE_DIR}}#digits --command {{.CLI_ARGS}}
+      - nix develop {{.FLAKE_DIR}}#devbox --command {{.CLI_ARGS}}
     requires:
       vars: [CLI_ARGS]
 
   shell:
     desc: "Enter specific shell environment"
     cmds:
-      - nix develop {{.FLAKE_DIR}}#{{.CLI_ARGS | default "digits"}}
+      - nix develop {{.FLAKE_DIR}}#{{.CLI_ARGS | default "devbox"}}
     interactive: true
 
   # =============================================================================
@@ -279,27 +257,11 @@ tasks:
       - task: home:nixos
       - echo "🚀 NixOS deployment completed!"
 
-  deploy:darwin:
-    desc: "Full Darwin deployment workflow"
-    cmds:
-      - task: check
-      - task: build:darwin
-      - task: switch:darwin
-      - task: home:darwin
-      - echo "🚀 Darwin deployment completed!"
-
   update:deploy:nixos:
     desc: "Update and deploy NixOS"
     cmds:
       - task: update
       - task: deploy:nixos
-      - echo "✅ Update and deployment completed!"
-
-  update:deploy:darwin:
-    desc: "Update and deploy Darwin"
-    cmds:
-      - task: update
-      - task: deploy:darwin
       - echo "✅ Update and deployment completed!"
 
   maintenance:

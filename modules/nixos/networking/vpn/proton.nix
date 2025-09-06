@@ -7,7 +7,7 @@
       listenPort = 51820;
       address = [ "10.2.0.2/32" ];
       # dns = [ "10.2.0.1" ];
-      privateKeyFile = "/home/arrayofone/vpn/proton-wireguard-CA-500.priv";
+      privateKeyFile = "/home/lunch/vpn/proton-wireguard-CA-500.priv";
 
       peers = [
         {

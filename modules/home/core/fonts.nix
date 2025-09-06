@@ -5,6 +5,7 @@
 {
   home.packages = with pkgs; [
     fontconfig
+    nerd-fonts.fira-code
     nerd-fonts.intone-mono
     nerd-fonts.ubuntu
     nerd-fonts.ubuntu-mono

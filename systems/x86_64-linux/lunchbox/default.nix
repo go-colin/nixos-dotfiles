@@ -5,7 +5,7 @@
     # pkgs.fetchTarball awsVpnClient
   ];
 
-  networking.hostName = "baradur";
+  networking.hostName = "lunchbox";
 
   boot = {
     loader = {
@@ -14,7 +14,7 @@
     };
   };
 
-  snowfallorg.users.arrayofone = {
+  snowfallorg.users.lunch = {
     create = true;
     admin = true;
 
@@ -25,13 +25,13 @@
   };
 
   users = {
-    groups.arrayofone = { };
+    groups.lunch = { };
 
-    users.arrayofone = {
+    users.lunch = {
       isNormalUser = true;
-      group = "arrayofone";
+      group = "lunch";
       initialPassword = "letmein";
-      description = "primordial devboi";
+      description = "bentobox wizard";
       shell = pkgs.zsh;
       extraGroups = [
         "networkmanager"
@@ -46,7 +46,7 @@
     };
   };
 
-  fellowship = {
+  bentobox = {
     gui.desktop = {
       dunst.enable = true;
       hyprland.enable = true;
@@ -55,25 +55,18 @@
       };
     };
     hardware.nvidia.enable = true;
-    programs.ethereum.erigon.sepolia = {
-      enable = false;
-    };
-    programs.ethereum.geth.sepolia = {
-      enable = false;
-    };
     networking = {
       # headscale.enable = false;
       # tailscale.enable = false;
       wireguard.server = {
         enable = false;
-        externalInterface = "enp42s0";
+        externalInterface = "eno1";
       };
     };
   };
 
   environment = {
     systemPackages = with pkgs; [
-      alacritty
       dconf
       foot
       ghostty
@@ -113,7 +106,7 @@
       extraConfig = "unload-module module-suspend-on-idle";
     };
 
-    openssh.enable = true;
+    # openssh.enable = true;
     printing.enable = true;
     pipewire = {
       enable = true;
@@ -144,8 +137,8 @@
       enable = true;
       acceleration = "cuda";
       loadModels = [
-        "deepseek-r1"
-        "incept5/llama3.1-claude"
+        "cyberuser42/DeepSeek-R1-Distill-Qwen-14B"
+        "XianYu_bi/DeepSeek-R1-Distill-Qwen-14B-Q3_K_M"
       ];
     };
     open-webui.enable = false;
@@ -187,13 +180,6 @@
     zsh.enable = true;
     dconf.enable = true;
     thunar.enable = true;
-
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
-    };
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
@@ -246,7 +232,7 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
 
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
   i18n.defaultLocale = "en_CA.UTF-8";
 

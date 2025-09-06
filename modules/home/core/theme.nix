@@ -21,8 +21,8 @@
 
     fonts = {
       monospace = {
-        package = pkgs.intel-one-mono;
-        name = "Intel One Mono";
+        package = pkgs.fira-code;
+        name = "Fira Code";
       };
       sansSerif = {
         package = pkgs.ubuntu_font_family;
@@ -62,9 +62,7 @@
 
       zed.enable = false;
 
-      vscode.profileNames = [ "default" ];
       firefox.profileNames = [ "default" ];
-      librewolf.profileNames = [ "default" ];
 
       # cavalier.enable = false;
     };

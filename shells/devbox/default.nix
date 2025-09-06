@@ -1,13 +1,13 @@
 { pkgs, ... }:
 
 pkgs.mkShell {
-  name = "nix-digits";
+  name = "nix-devbox";
 
   packages = with pkgs; [
     # go
     delve
-    go_1_23
-    go-ethereum
+    go_1_15
+    # go-ethereum
     gopls
     gotools
     go-tools
@@ -33,16 +33,15 @@ pkgs.mkShell {
     gnumake
     htop
     jq
-    k9s
-    kubectl
-    kubectx
-    kubernetes-helm
+    # k9s
+    # kubectl
+    # kubectx
+    # kubernetes-helm
     lazydocker
     lazysql
     lf
-    minikube
+    # minikube
     neofetch
-    neovim
     openssl
     podman
     podman-compose
@@ -50,6 +49,5 @@ pkgs.mkShell {
     postgresql
     protobuf
     ripgrep
-    vim-full
   ];
 }

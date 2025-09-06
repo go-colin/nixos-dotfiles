@@ -11,6 +11,7 @@ in
     services.xserver.enable = true;
     services.xserver.videoDrivers = ["nvidia"];
 
+    boot.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     hardware = {
       graphics = {
         enable = true;
@@ -23,7 +24,7 @@ in
         powerManagement.finegrained = false;
         open = true;
         nvidiaSettings = false;
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = config.boot.kernelPackages.linux_6_16.nvidia_x11_beta; 
       };
     };
 

@@ -7,7 +7,7 @@ in
     enable = lib.mkEnableOption "enable main user";
     
     userName = lib.mkOption {
-      default = "arrayofone";
+      default = "lunch";
       description = ''
         username
       '';
@@ -50,7 +50,7 @@ in
     
     services.displayManager.autoLogin = lib.mkIf cfg.auto-login {
       enable = true;
-      user = "arrayofone";
+      user = "lunch";
     };
   };
 }
