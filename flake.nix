@@ -39,6 +39,7 @@
     #   url = "github:nix-community/ethereum.nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+  };
 
   outputs =
     inputs:
@@ -71,19 +72,6 @@
       };
 
       systems.hosts.nixbox.modules = with inputs; [
-        ethereum-nix.nixosModules.default
-        (
-          { pkgs, system, ... }:
-          {
-            environment.systemPackages = (
-              # with ethereum-nix.packages.x86_64-linux;
-              [
-                #teku
-                #lighthouse
-              ]
-            );
-          }
-        )
       ];
 
     };

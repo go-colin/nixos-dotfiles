@@ -6,7 +6,7 @@ pkgs.mkShell {
   packages = with pkgs; [
     # go
     delve
-    go_1_15
+    go_1_25
     # go-ethereum
     gopls
     gotools

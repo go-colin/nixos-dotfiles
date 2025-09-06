@@ -39,7 +39,8 @@ tasks:
     desc: "Build and run NixOS configuration in VM"
     cmds:
       - sudo nixos-rebuild build-vm --flake {{.FLAKE_DIR}}#{{.NIXOS_HOST}}
-      - echo "VM built! Run: ./result/bin/run-{{.NIXOS_HOST}}-vm"
+      - |
+        echo "VM built! Run: ./result/bin/run-{{.NIXOS_HOST}}-vm"
 
   # =============================================================================
   # HOME MANAGER OPERATIONS
