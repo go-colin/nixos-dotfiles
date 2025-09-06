@@ -12,6 +12,7 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    kernelPackages = pkgs.linuxPackages_6_16; # use 6.16 kernel
   };
 
   snowfallorg.users.lunch = {

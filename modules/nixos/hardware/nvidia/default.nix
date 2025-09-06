@@ -24,7 +24,7 @@ in
         powerManagement.finegrained = false;
         open = true;
         nvidiaSettings = false;
-        package = config.boot.kernelPackages.linux_6_16.nvidia_x11_beta; 
+        package = config.boot.kernelPackages.nvidiaPackages.beta; 
       };
     };
 
