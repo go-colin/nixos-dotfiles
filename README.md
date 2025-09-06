@@ -1,11 +1,11 @@
 <div align="center">
 
-# ❄️ Fellowship
-### *arrayofone's NixOS Configuration*
+# ❄️ Bentobox
+### *go-colin's NixOS Configuration*
 
 *Declarative system configuration with NixOS & nix-darwin*
 
-**[🐧 Linux Guide](docs/baradur.md)** • **[🍎 macOS Guide](docs/digibook.md)**
+**[🐧 Linux Guide](docs/lunchbox.md)**
 
 </div>
 
@@ -15,8 +15,7 @@
 
 | System | Architecture | OS | Purpose |
 |--------|--------------|----|---------| 
-| **baradur** | `x86_64-linux` | NixOS 24.05 | Desktop (Hyprland) |
-| **digibook** | `aarch64-darwin` | macOS | Development Laptop |
+| **lunchbox** | `x86_64-linux` | NixOS 24.05 | Desktop (Hyprland) |
 
 ## 🚀 Quick Start
 
@@ -37,8 +36,6 @@ git clone <repo> ~/.sys && cd ~/.sys
 # Linux
 task deploy:nixos
 
-# macOS  
-task deploy:darwin
 ```
 
 ## 📁 Structure
@@ -58,9 +55,9 @@ task deploy:darwin
 
 | Operation | Linux | macOS |
 |-----------|-------|-------|
-| **Deploy** | `task deploy:nixos` | `task deploy:darwin` |
-| **Switch** | `task switch:nixos` | `task switch:darwin` |
-| **Home** | `task home:nixos` | `task home:darwin` |
+| **Deploy** | `task deploy:nixos` |
+| **Switch** | `task switch:nixos` |
+| **Home** | `task home:nixos` |
 
 ### Common
 ```bash
@@ -71,8 +68,7 @@ task maintenance # Weekly cleanup
 
 ## 📚 Guides
 
-- **[🐧 baradur](docs/baradur.md)** - Linux system setup
-- **[🍎 digibook](docs/digibook.md)** - macOS system setup
+- **[🐧 lunchbox](docs/lunchbox.md)** - Linux system setup
 
 ---
 
