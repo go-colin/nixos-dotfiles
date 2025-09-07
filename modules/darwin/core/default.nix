@@ -3,7 +3,7 @@
 }:
 {
   imports = [
-    ./fonts.nix
+    # ./fonts.nix
     ./secrets.nix
   ];
 }

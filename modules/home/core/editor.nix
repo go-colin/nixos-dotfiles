@@ -156,7 +156,6 @@
           };
 
           "editor.suggestSelection" = "first";
-          "editor.fontFamily" = "Intel One Mono";
           "editor.fontLigatures" = true;
           "editor.wordWrap" = "on";
           "editor.tabSize" = 2;

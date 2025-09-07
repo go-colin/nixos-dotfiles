@@ -1,4 +1,4 @@
-{ ... }:
+{ config, namespace, ... }:
 {
   imports = [
     ./homebrew.nix
@@ -14,6 +14,19 @@
 
     primaryUser = "db";
     stateVersion = 6;
+  };
+
+  ${namespace}.networking.wireguard.server = {
+    enable = true;
+    interface = "wg0";
+    ips = [ "10.20.255.252/32" ];
+    privateKeyFile = config.sops.secrets."vpn/wg/privateKey".path;
+    peers = [
+      {
+        publicKey = "4N2292pRHaViKm4TCSuDHa8x48ARn8tNZv1dSHWRuhA=";
+        endpoint = "wg.arrayof.one:443";
+      }
+    ];
   };
 
   homebrew = {

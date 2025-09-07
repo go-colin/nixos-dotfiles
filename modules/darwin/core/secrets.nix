@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ inputs.sops-nix.nixosModules.sops ];
+  imports = [ inputs.sops-nix.darwinModules.sops ];
 
   sops = {
     defaultSopsFile = "${lib.snowfall.fs.get-file "secrets"}/${config.system.name}.yaml";
