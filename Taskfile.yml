@@ -2,10 +2,8 @@ version: "3"
 
 vars:
   FLAKE_DIR: "{{.USER_WORKING_DIR}}"
-  NIXOS_HOST: "baradur"
-  DARWIN_HOST: "digibook"
-  NIXOS_USER: "arrayofone"
-  DARWIN_USER: "db"
+  NIXOS_HOST: "lunchbox"
+  NIXOS_USER: "lunch"
 
 tasks:
   # =============================================================================
@@ -17,20 +15,10 @@ tasks:
     cmds:
       - sudo nixos-rebuild build --flake {{.FLAKE_DIR}}#{{.NIXOS_HOST}}
 
-  build:darwin:
-    desc: "Build Darwin system configuration"
-    cmds:
-      - darwin-rebuild build --flake {{.FLAKE_DIR}}#{{.DARWIN_HOST}}
-
   switch:nixos:
     desc: "Switch to new NixOS configuration"
     cmds:
       - sudo nixos-rebuild switch --flake {{.FLAKE_DIR}}#{{.NIXOS_HOST}}
-
-  switch:darwin:
-    desc: "Switch to new Darwin configuration"
-    cmds:
-      - darwin-rebuild switch --flake {{.FLAKE_DIR}}#{{.DARWIN_HOST}}
 
   test:nixos:
     desc: "Test NixOS configuration (activate without adding to bootloader)"
@@ -62,20 +50,10 @@ tasks:
     cmds:
       - home-manager switch --flake {{.FLAKE_DIR}}#{{.NIXOS_USER}}@{{.NIXOS_HOST}}
 
-  home:darwin:
-    desc: "Switch Home Manager configuration (Darwin)"
-    cmds:
-      - home-manager switch --flake {{.FLAKE_DIR}}#{{.DARWIN_USER}}@{{.DARWIN_HOST}}
-
   home:build:nixos:
     desc: "Build Home Manager configuration (NixOS)"
     cmds:
       - home-manager build --flake {{.FLAKE_DIR}}#{{.NIXOS_USER}}@{{.NIXOS_HOST}}
-
-  home:build:darwin:
-    desc: "Build Home Manager configuration (Darwin)"
-    cmds:
-      - home-manager build --flake {{.FLAKE_DIR}}#{{.DARWIN_USER}}@{{.DARWIN_HOST}}
 
   # =============================================================================
   # FLAKE MANAGEMENT
@@ -116,20 +94,20 @@ tasks:
   dev:
     desc: "Enter development shell"
     cmds:
-      - nix develop {{.FLAKE_DIR}}#digits
+      - nix develop {{.FLAKE_DIR}}#devbox
     interactive: true
 
   dev:command:
     desc: "Run command in development shell"
     cmds:
-      - nix develop {{.FLAKE_DIR}}#digits --command {{.CLI_ARGS}}
+      - nix develop {{.FLAKE_DIR}}#devbox --command {{.CLI_ARGS}}
     requires:
       vars: [CLI_ARGS]
 
   shell:
     desc: "Enter specific shell environment"
     cmds:
-      - nix develop {{.FLAKE_DIR}}#{{.CLI_ARGS | default "digits"}}
+      - nix develop {{.FLAKE_DIR}}#{{.CLI_ARGS | default "devbox"}}
     interactive: true
 
   # =============================================================================
@@ -150,52 +128,6 @@ tasks:
     requires:
       vars: [CLI_ARGS]
 
-  # =============================================================================
-  # SECRETS MANAGEMENT
-  # =============================================================================
-
-  secrets:edit:
-    desc: "Edit secrets file with SOPS"
-    cmds:
-      - sops {{.FLAKE_DIR}}/secrets/fellowship.yaml
-
-  secrets:decrypt:
-    desc: "Decrypt and show secrets"
-    cmds:
-      - sops -d {{.FLAKE_DIR}}/secrets/fellowship.yaml
-
-  secrets:encrypt:
-    desc: "Re-encrypt secrets with current keys"
-    cmds:
-      - sops updatekeys {{.FLAKE_DIR}}/secrets/fellowship.yaml
-
-  sops:user:ssh-gen-private:
-    cmds:
-      - nix run nixpkgs#ssh-to-age -- -private-key -i ~/.ssh/sops-nix > ~/.config/sops/age/keys.txt
-
-  sops:user:gen-public:
-    cmds:
-      - nix run nixpkgs#age-keygen -y ~/.config/sops/age/keys.txt
-
-  sops:system:ssh-gen-private:
-    cmds:
-      - ssh-keygen -A
-      - mkdir -p /var/lib/sops-nix
-      # - rm -rf /var/lib/sops-nix/key.txt
-      # - touch /var/lib/sops-nix/key.txt
-      - nix run nixpkgs#ssh-to-age -- -private-key -i /etc/ssh/ssh_host_ed25519_key > /var/lib/sops-nix/key.txt
-
-  sops:system:gen-public:
-    cmds:
-      - nix shell nixpkgs#age -c age-keygen -y /var/lib/sops-nix/key.txt
-
-  age:keygen:
-    desc: "Generate new age key"
-    cmds:
-      - mkdir -p ~/.config/age
-      - age-keygen -o ~/.config/age/keys.txt
-      - echo "Public key:"
-      - age-keygen -y ~/.config/age/keys.txt
 
   # =============================================================================
   # MAINTENANCE & CLEANUP
@@ -299,27 +231,11 @@ tasks:
       - task: home:nixos
       - echo "🚀 NixOS deployment completed!"
 
-  deploy:darwin:
-    desc: "Full Darwin deployment workflow"
-    cmds:
-      - task: check
-      - task: build:darwin
-      - task: switch:darwin
-      - task: home:darwin
-      - echo "🚀 Darwin deployment completed!"
-
   update:deploy:nixos:
     desc: "Update and deploy NixOS"
     cmds:
       - task: update
       - task: deploy:nixos
-      - echo "✅ Update and deployment completed!"
-
-  update:deploy:darwin:
-    desc: "Update and deploy Darwin"
-    cmds:
-      - task: update
-      - task: deploy:darwin
       - echo "✅ Update and deployment completed!"
 
   maintenance:

@@ -23,8 +23,8 @@ in
     home = {
       packages = with pkgs; [
         delve
-        go_1_24
-        go-ethereum
+        go_1_25
+        # go-ethereum
         gopls
         gotools
         go-tools

@@ -16,16 +16,17 @@
     };
   };
 
-  networking.hostName = "baradur";
+  networking.hostName = "lunchbox";
 
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    kernelPackages = pkgs.linuxPackages_6_16; # use 6.16 kernel
   };
 
-  snowfallorg.users.arrayofone = {
+  snowfallorg.users.lunch = {
     create = true;
     admin = true;
 
@@ -36,13 +37,13 @@
   };
 
   users = {
-    groups.arrayofone = { };
+    groups.lunch = { };
 
-    users.arrayofone = {
+    users.lunch = {
       isNormalUser = true;
-      group = "arrayofone";
+      group = "lunch";
       initialPassword = "letmein";
-      description = "primordial devboi";
+      description = "bentobox wizard";
       shell = pkgs.zsh;
       extraGroups = [
         "networkmanager"
@@ -57,7 +58,7 @@
     };
   };
 
-  fellowship = {
+  bentobox = {
     gui.desktop = {
       dunst.enable = true;
       hyprland.enable = true;
@@ -66,39 +67,19 @@
       };
     };
     hardware.nvidia.enable = true;
-    programs.ethereum.erigon.sepolia = {
-      enable = false;
-    };
-    programs.ethereum.geth.sepolia = {
-      enable = false;
-    };
 
-    networking.wireguard.server = {
-      enable = true;
-      interface = "wg0";
-      externalInterface = "enp42s0";
-      port = "$(cat ${config.sops.secrets."vpn/wg/port".path})";
-      ips = [ "10.20.255.253/16" ];
-      privateKeyFile = config.sops.secrets."vpn/wg/privateKey".path;
-      routes = [
-        {
-          destination = "$(cat ${config.sops.secrets."vpn/wg/endpoint-ip".path})";
-          via = "10.10.10.1";
-          dev = "enp42s0";
-        }
-      ];
-      peers = [
-        {
-          publicKey = "4N2292pRHaViKm4TCSuDHa8x48ARn8tNZv1dSHWRuhA=";
-          endpoint = "wg.arrayof.one:443";
-        }
-      ];
+    networking = {
+      # headscale.enable = false;
+      # tailscale.enable = false;
+      wireguard.server = {
+        enable = false;
+        externalInterface = "eno1";
+      };
     };
   };
 
   environment = {
     systemPackages = with pkgs; [
-      alacritty
       dconf
       foot
       ghostty
@@ -130,7 +111,7 @@
       extraConfig = "unload-module module-suspend-on-idle";
     };
 
-    openssh.enable = true;
+    # openssh.enable = true;
     printing.enable = true;
     pipewire = {
       enable = true;
@@ -161,8 +142,8 @@
       enable = false;
       acceleration = "cuda";
       loadModels = [
-        "deepseek-r1"
-        "incept5/llama3.1-claude"
+        "cyberuser42/DeepSeek-R1-Distill-Qwen-14B"
+        "XianYu_bi/DeepSeek-R1-Distill-Qwen-14B-Q3_K_M"
       ];
     };
 
@@ -205,13 +186,6 @@
     zsh.enable = true;
     dconf.enable = true;
     thunar.enable = true;
-
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
-    };
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
@@ -264,7 +238,7 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
 
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
   i18n.defaultLocale = "en_CA.UTF-8";
 

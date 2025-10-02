@@ -250,7 +250,7 @@
       # sessionVariables
       shellAliases = {
         cat = "${pkgs.bat}/bin/bat";
-        e = "\${EDITOR:-nvim}";
+        e = "\${EDITOR:-hx}";
         kc = "kubectl";
         ll = "ls -la";
         pw = "ps aux | grep -v grep | grep -e";

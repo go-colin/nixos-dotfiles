@@ -27,7 +27,6 @@
     lf
     lsof
     neofetch
-    neovim
     netcat
     openssl
     protols
@@ -40,18 +39,17 @@
     zellij
 
     # TODO: are these needed for all systems? - probably not
-    awscli2
+    # awscli2
     docker
     docker-compose
-    emacs
-    k9s
-    kotlin-language-server
-    kubectl
-    kubectx
-    kubernetes-helm
+    # k9s
+    # kotlin-language-server
+    # kubectl
+    # kubectx
+    # kubernetes-helm
     lazydocker
     lazysql
-    minikube
+    # minikube
     nil
     nixfmt-rfc-style
     oxker

@@ -1,17 +1,12 @@
 keys:
-  - &arrayofone age19r87m08mt03zg8ustzlx733s4m4wph6vvkd0qxlequfje5k0mawsy68vp2
-  - &baradur age1fe2alznmwldqrnlx09n4e7hfc3kflm2h9lmgem54kcadze5kp53qjuyrqy
-  - &digibook age1r8r0dw6phgn58h7g8l93hvv790lhjeg0v240vc0sv2lg8njly43st0j7q4
+  - &lunch age1s2wrj0e8c2p09rxlkrlghdmed473zl46zp0j64mzlgp66gj80d2q9pyve3
+  - &lunchbox age1qvq5uw669mxfu39nuxfjl7wrkr6zpvyxpezff3k20m4sdzas03wslm8gdn
 creation_rules:
-  - path_regex: secrets/arrayofone.yaml$
+  - path_regex: secrets/lunch.yaml$
     key_groups:
       - age:
-          - *arrayofone
-  - path_regex: secrets/baradur.yaml$
+          - *lunch
+  - path_regex: secrets/lunchbox.yaml$
     key_groups:
       - age:
-          - *baradur
-  - path_regex: secrets/digibook.yaml$
-    key_groups:
-      - age:
-          - *digibook
+          - *lunchbox

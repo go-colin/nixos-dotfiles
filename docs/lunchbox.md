@@ -1,7 +1,7 @@
 <div align="center">
 
-# 🐧 baradur - Linux Desktop
-### *NixOS Gaming & Development Workstation*
+# 🐧 lunchbox - Linux Desktop
+### *NixOS Development Workstation*
 
 *NixOS • Hyprland • NVIDIA • Development*
 
@@ -16,11 +16,11 @@
 | Component | Details |
 |-----------|---------|
 | **Architecture** | `x86_64-linux` |
-| **OS** | NixOS 24.05 |
+| **OS** | NixOS 25.05 |
 | **Window Manager** | Hyprland |
 | **Display Manager** | SDDM |
 | **Graphics** | NVIDIA with CUDA |
-| **User** | arrayofone |
+| **User** | lunch |
 
 ## 🚀 Quick Setup
 
@@ -33,11 +33,11 @@ nix-shell -p go-task
 ### Installation
 ```bash
 # Clone repository
-git clone git@github.com:arrayofone/nixos-dotfiles.git ~/.sys && cd ~/.sys
+git clone git@github.com:go-colin/nixos-dotfiles.git ~/.sys && cd ~/.sys
 
 # Generate hardware config (new installations)
 sudo nixos-generate-config --root /mnt
-cp /mnt/etc/nixos/hardware-configuration.nix systems/x86_64-linux/baradur/
+cp /mnt/etc/nixos/hardware-configuration.nix systems/x86_64-linux/lunchbox/
 
 # Deploy system
 task deploy:nixos
@@ -66,7 +66,7 @@ task dev
 go version                     # Go 1.23
 node --version                 # Node.js LTS
 docker --version               # Docker
-kubectl version                # Kubernetes CLI
+<!-- kubectl version                # Kubernetes CLI -->
 ```
 
 ### System Services
@@ -113,6 +113,6 @@ hyprctl systeminfo
 
 <div align="center">
 
-**[⬅️ Back to Main](../README.md)** • **[🍎 macOS Guide](digibook.md)**
+**[⬅️ Back to Main](../README.md)**
 
 </div>
