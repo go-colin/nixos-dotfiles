@@ -54,7 +54,8 @@ in
         "$ws_10" = "10";
 
         monitor = [
-          ",preferred,auto,1"
+          "DP-2,highrr,0x0,1"
+          "DP-3,highres,auto-center-right,1,transform,1"
         ];
 
         env = [
@@ -688,7 +689,7 @@ in
 
     home = {
       packages = with pkgs; [
-        rofi-wayland
+        rofi
         networkmanagerapplet
         brightnessctl
         playerctl

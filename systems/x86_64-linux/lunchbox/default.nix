@@ -71,10 +71,10 @@
     networking = {
       # headscale.enable = false;
       # tailscale.enable = false;
-      wireguard.server = {
-        enable = false;
-        externalInterface = "eno1";
-      };
+      # wireguard.server = {
+        # enable = false;
+        # externalInterface = "eno1";
+      # };
     };
   };
 

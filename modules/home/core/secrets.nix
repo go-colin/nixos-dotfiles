@@ -13,9 +13,8 @@ in
   imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
   sops = {
-    # age.keyFile = "/home/${config.snowfallorg.user.name}/.age-key.txt"; # must have no password!
+    age.keyFile = "/home/${config.snowfallorg.user.name}/secrets/lunch.txt"; # must have no password!
     # It's also possible to use a ssh key, but only when it has no password:
-    age.sshKeyPaths = [ "/home/${config.snowfallorg.user.name}/.ssh/sops-nix" ];
     defaultSopsFile = "${secrets}/${config.snowfallorg.user.name}.yaml";
     # secrets.test = {
     #   # sopsFile = ./secrets.yml.enc; # optionally define per-secret files
@@ -29,8 +28,7 @@ in
     secrets = {
       "git/name" = { };
       "git/email" = { };
-      "git/gh/ssh-private" = { };
-      "git/gh/ssh-public" = { };
+      "git/signingKey" = { };
       "ai/anthropic/api-key" = { };
     };
   };
