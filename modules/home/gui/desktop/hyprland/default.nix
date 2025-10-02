@@ -54,8 +54,8 @@ in
         "$ws_10" = "10";
 
         monitor = [
-          "DP-2,highrr,0x0,1"
-          "DP-3,highres,auto-center-right,1,transform,1"
+          "DP-2,preferred,0x0,1"
+          "DP-3,preferred,auto-center-right,1,transform,1"
         ];
 
         env = [
@@ -543,10 +543,6 @@ in
           ", XF86AudioPrev, exec, playerctl previous"
         ];
 
-        rule = [
-
-        ];
-
         workspace = [
           "$ws_1, monitor:DP-2, default:true"
           "$ws_2, monitor:DP-3, default:true"
@@ -570,9 +566,6 @@ in
 
           ######## SMART TILING RULES ########
           # Browsers - optimized for reading and productivity
-          "size 70% 100%, class:^(brave-browser)$"
-          "tile, class:^(brave-browser)$"
-          "group set always, class:^(brave-browser)$"
           "size 70% 100%, class:^(firefox)$"
           "tile, class:^(firefox)$"
           "group set always, class:^(firefox)$"
@@ -588,23 +581,15 @@ in
           "center, class:^(code)$"
           "group set always, class:^(code)$"
 
-          "size 80% 90%, class:^(neovim)$"
-          "tile, class:^(neovim)$"
-          "group set always, class:^(neovim)$"
-
-          "size 85% 95%, class:^(jetbrains-.*)$"
-          "tile, class:^(jetbrains-.*)$"
-          "center, class:^(jetbrains-.*)$"
+          "size 80% 90%, class:^(helix)$"
+          "tile, class:^(helix)$"
+          "group set always, class:^(helix)$"
 
           # Terminals - golden ratio proportions for elegance
           "size 61.8% 70%, class:^(kitty)$"
           "tile, class:^(kitty)$"
-          "size 61.8% 70%, class:^(foot)$"
-          "tile, class:^(foot)$"
           "size 61.8% 70%, class:^(com.mitchellh.ghostty)$"
           "tile, class:^(com.mitchellh.ghostty)$"
-          "size 61.8% 70%, class:^(alacritty)$"
-          "tile, class:^(alacritty)$"
 
           # Media applications - center stage
           "size 80% 80%, class:^(mpv)$"
@@ -635,18 +620,14 @@ in
           "center, class:^(btop)$"
 
           ######## TAGS ########
-          "tag:+browser class:^(brave-browser)$"
-          "tag:+browser class:^(firefox)$"
+          "tag +browser, class:^(brave-browser)$"
+          "tag +browser, class:^(firefox)$"
 
-          "tag:+ide class:^(code)$"
+          "tag +ide, class:^(code)$"
 
-          "tag:+term class:^(kitty)$"
-          "tag:+term class:^(foot)$"
-          "tag:+term class:^(com.mitchellh.ghostty)$"
-
-          "float, class:(clipse)"
-          "size 622 652, class:(clipse)"
-          "stayfocused, class:(clipse)"
+          "tag +term, class:^(kitty)$"
+          "tag +term, class:^(foot)$"
+          "tag +term, class:^(com.mitchellh.ghostty)$"
 
           "float,class:($calculator)"
           "workspace special:special:calculator,class:($calculator)"
@@ -667,7 +648,6 @@ in
           "workspace special:special:obsidian,class:($obsidian)"
           "size 622 652, class:($obsidian)"
 
-          "workspace name:ide tag:^ide$"
         ];
 
         exec-once = [

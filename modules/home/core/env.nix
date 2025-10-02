@@ -2,7 +2,7 @@
 {
   home = {
     sessionVariables = {
-      EDITOR = "zeditor";
+      EDITOR = "hx";
     };
   };
 
