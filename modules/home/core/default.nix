@@ -33,10 +33,9 @@
     ripgrep
     sops
     tmux
-    vim-full
+    helix
     wget
     wireguard-tools
-    zellij
 
     # TODO: are these needed for all systems? - probably not
     # awscli2

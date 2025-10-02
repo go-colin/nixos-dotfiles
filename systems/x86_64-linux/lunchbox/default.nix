@@ -81,7 +81,6 @@
   environment = {
     systemPackages = with pkgs; [
       dconf
-      foot
       ghostty
       kitty
       libqalculate

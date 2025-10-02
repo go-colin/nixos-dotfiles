@@ -30,9 +30,9 @@ in
       portalPackage = null;
 
       settings = {
-        "$terminal" = "foot";
+        "$terminal" = "ghostty";
         "$terminalexec" = "$terminal -e";
-        "$browser" = "brave";
+        "$browser" = "firefox";
         "$calculator" = "qalculate-gtk";
         "$resourceman" = "btop";
         "$ide" = "zeditor";
@@ -548,10 +548,10 @@ in
         ];
 
         workspace = [
-          "$ws_1, monitor:DP-1, default:true"
-          "$ws_2, monitor:DP-2, default:true"
-          "$ws_3, monitor:DP-2, default:true"
-          "$ws_4, monitor:DP-2, default:true"
+          "$ws_1, monitor:DP-2, default:true"
+          "$ws_2, monitor:DP-3, default:true"
+          "$ws_3, monitor:DP-3, default:true"
+          "$ws_4, monitor:DP-3, default:true"
 
           # Smart workspace layouts
           "$ws_1, layoutopt:orientation:left"
