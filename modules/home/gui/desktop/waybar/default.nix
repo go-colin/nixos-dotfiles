@@ -107,7 +107,7 @@ in
 
           # Clock
           clock = {
-            timezone = "America/New_York";
+            timezone = "America/Vancouver";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             format = "󰥔 {:%H:%M}";
             format-alt = "󰸗 {:%a, %b %d, %Y}";

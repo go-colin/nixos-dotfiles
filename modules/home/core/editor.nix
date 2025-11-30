@@ -6,6 +6,13 @@
 {
   programs = {
 
+    ghostty = {
+      settings = {
+        theme = "catpuccin-mocha";
+        font-size = 11;
+      };
+    };
+
     zed-editor = {
       enable = true;
 
@@ -81,7 +88,7 @@
           ### copilot_chat models { gpt-4o gpt-4 gpt-3.5-turbo o1-preview } requires github connected
           default_model = {
             provider = "zed.dev";
-            model = "claude-3-5-sonnet-latest";
+            model = "claude-4-7-sonnet-latest";
           };
 
           #                inline_alternatives = [
@@ -131,9 +138,9 @@
           env = {
             TERM = "ghostty";
           };
-          font_family = "Fira Code";
+          font_family = "FiraCode Nerd Font Mono";
           font_features = null;
-          font_size = null;
+          font_size = 12;
           line_height = "comfortable";
           option_as_meta = false;
           button = false;
@@ -176,8 +183,10 @@
           dark = "Tokyo Night";
         };
         show_whitespaces = "boundary";
-        ui_font_size = lib.mkDefault 12;
-        buffer_font_size = lib.mkDefault 12;
+        ui_font_size = lib.mkForce 11;
+        buffer_font_size = lib.mkForce 12;
+        ui_font_family = lib.mkForce "FiraCode Nerd Font";
+        buffer_font_family = lib.mkForce "FiraCode Nerd Font Mono";
       };
     };
   };

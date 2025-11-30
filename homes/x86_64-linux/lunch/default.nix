@@ -30,7 +30,7 @@
         obsidian.enable = true;
         postman.enable = true;
         slack.enable = true;
-        # tidal.enable = true;
+        spotify.enable = true;
         webcord.enable = true;
       };
     };

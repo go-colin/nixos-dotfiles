@@ -54,7 +54,7 @@ in
         "$ws_10" = "10";
 
         monitor = [
-          "DP-2,preferred,0x0,1"
+          "DP-2,2560x1440@144,0x0,1"
           "DP-3,preferred,auto-center-right,1,transform,1"
         ];
 
@@ -189,8 +189,8 @@ in
           repeat_rate = 25;
           repeat_delay = 600;
           sensitivity = 0.0;
-          accel_profile = "";
-          force_no_accel = false;
+          accel_profile = "flat";
+          force_no_accel = true;
           left_handed = false;
           scroll_points = "";
           scroll_method = "";
@@ -655,9 +655,9 @@ in
           "clipse -listen"
 
           "[workspace $ws_1 silent] $terminal"
-          "[workspace $ws_2 silent] $ide"
-          "[workspace $ws_3 silent] $browser"
-          "[workspace $ws_4 silent] slack"
+          "[workspace $ws_1 silent] $ide"
+          "[workspace $ws_2 silent] $browser"
+          "[workspace $ws_3 silent] slack"
         ];
       };
 
